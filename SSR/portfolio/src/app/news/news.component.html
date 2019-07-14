@@ -1,0 +1,65 @@
+<div class="news">
+  <div class="news__bar"
+       *ngIf="newsAssets">
+      <div class="news__categoryWrap">
+        <ul class="news__categoryList">
+          <li *ngFor="let category of newsAssets.categories"
+              class="news__categoryItem"
+              [ngClass]="{'news__categoryItem--active': category.active}"
+              (click)="changePressProofCategory(category.title)">
+            {{category.title}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="news__inputsWrap">
+        <div class="row">
+          <div class="col-6">
+            <select  (change)="changePressProofCountry($event.target)"
+                     class="news__select">
+              <option class="news__option"
+                      *ngFor="let country of newsAssets.countries"
+                      [selected]="country.code == 'us'"
+                      value="{{country.code}}">
+                {{country.country}}
+              </option>
+            </select>
+          </div>
+          <div class="col-6">
+            <div class="news__inputWrap">
+              <input class="news__input"
+                     placeholder="search in feed"
+                     (keyup)="querySearchRequest.next($event.target.value)"
+                     type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="news__wrapper"
+       *ngIf="news">
+    <div class="pressProof"
+         *ngFor="let pressProof of news.articles">
+      <div class="pressProof__publishedAt">{{pressProof.publishedAt}}</div>
+      <h4 class="pressProof__title">{{pressProof.title}}</h4>
+      <div class="pressProof__imgWrapper">
+        <img class="pressProof__img" src="{{ pressProof.urlToImage ? pressProof.urlToImage : 'assets/img/150x80.png'}}" alt="{{pressProof.title}}">
+      </div>
+      <p class="pressProof__description">{{pressProof.description}}</p>
+
+      <div class="pressProof__footerWrap">
+        <div class="pressProof__magazine">Publication: {{pressProof.source.name}}</div>
+
+        <a href="{{pressProof.url}}" target="_blank" class="pressProof__link">
+          read more...
+        </a>
+      </div>
+      <div  [hidden]="pressProof.author < 1"
+            class="pressProof__author">
+        Author: {{pressProof.author}}
+      </div>
+    </div>
+  </div>
+</div>

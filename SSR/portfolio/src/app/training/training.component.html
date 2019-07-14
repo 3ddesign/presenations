@@ -1,0 +1,35 @@
+<div class="training">
+<!--  todo markup for title-->
+<!--  <div class="training__block"-->
+<!--       *ngFor="let item of trainingData; index as i">-->
+<!--    <h1 class="training__blockName">{{item.title}}</h1>-->
+<!--    <div class="row">-->
+      <div class="training__exercise col-12 col-md-6"
+                          *ngFor="let exercise of trainingData; index as j">
+        <div class="training__exerciseBlock">
+          <div class="training__exercise">
+            <label class="training__exerciseName"
+                   for="{{exercise.name}}">{{exercise.name}}</label>
+            <input id="{{exercise.name}}"
+                   class="training__exerciseInput"
+                   type="text"
+                   [(ngModel)]="exercise.weight"
+                   disabled />
+          </div>
+          <div class="training__nav">
+          <button class="training__btn"
+                  [disabled]="!enableBtn"
+                  (click)="changeValue(true, j)">
+            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+          </button>
+          <button class="training__btn"
+                  [disabled]="!enableBtn"
+                  (click)="changeValue(false, j)">
+            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+          </button>
+          </div>
+        </div>
+<!--      </div>-->
+<!--    </div>-->
+  </div>
+</div>

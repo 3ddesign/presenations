@@ -1,0 +1,163 @@
+@import "../variable";
+
+.aboutMe{
+  position: relative;
+  margin-bottom: 25px;
+  color: $greyLight;
+  margin-right: 35px;
+  font-size: 16px;
+  &__navList{
+    position: absolute;
+    top: 200px;
+    right: -15px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  &__navItem{
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+    width: 8px;
+    height: 8px;
+    margin-bottom: 20px;
+    &:hover{
+      .aboutMe__navTitle{
+        opacity: 1;
+      }
+    }
+  }
+  &__navLink{
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    background-color: $accentColor;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    &:hover{
+      background-color: $addColor;
+    }
+  }
+  &__navTitle{
+    position: absolute;
+    top: -4px;
+    right: 12px;
+    font-size: 10px;
+    font-style: italic;
+    border-radius: 3px;
+    opacity: 0;
+    color: $addColor;
+    background-color: black;
+    transition: all 0.2s ease;
+    cursor: default;
+    pointer-events: none;
+  }
+  &__clear{
+    clear: both;
+  }
+  &__photoWrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    width: 150px;
+    height: 150px;
+    background-color: black;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 3px solid $addColor;
+  }
+  &__photo{
+    width: 100%;
+  }
+  &__title{
+    display: inline-block;
+    color: $white;
+    font-size: 22px;
+    margin-left: 15px;
+    padding: 0 25px 2px 5px;
+    border-bottom: 1px solid $addColor;
+  }
+  &__descBlock{
+    margin-bottom: 25px;
+  }
+  &__desc{
+    margin-bottom: 25px;
+    text-align: justify;
+  }
+  &__time{
+    font-style: italic;
+    font-size: 16px;
+    color: $white;
+  }
+  &__resumeBar{
+    font-size: 18px;
+    padding: 15px 0;
+    border-bottom: 1px solid $addColor;
+    text-align: right;
+  }
+  &__resumeBtn{
+    display: inline-block;
+    padding: 5px 25px;
+    color: $black;
+    background-color: $accentColor;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0 3px;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+    &:hover{
+      background-color: $addColor;
+    }
+  }
+}
+
+
+
+/*==========  Desktop First  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width: 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width: 992px) {
+  .aboutMe{
+    &__time{
+      font-size: 14px;
+    }
+    &__title{
+      font-size: 18px;
+    }
+  }
+}
+
+
+/* Small Devices, Tablets */
+@media only screen and (max-width: 768px) {
+}
+
+/**/
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width: 480px) {
+  .aboutMe{
+    &__resumeBar{
+      font-size: 14px;
+    }
+  }
+}
+/* Custom, iPhone Retina */
+@media only screen and (max-width: 320px) {
+
+}
+

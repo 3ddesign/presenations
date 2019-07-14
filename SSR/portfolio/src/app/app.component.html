@@ -1,0 +1,150 @@
+<div class="header">
+    <div class="container">
+        <div class="header__contentWrap">
+            <div class="header__content">
+            </div>
+            <div (click)="appComponentModel.burger ? appComponentModel.burger = false : appComponentModel.burger = true"
+                 [ngClass]="{'burger--active' : appComponentModel.burger}"
+                 class="burger">
+                <span class="burger__line"></span>
+                <span class="burger__line"></span>
+                <span class="burger__line"></span>
+                <span class="burger__line"></span>
+            </div>
+            <div class="header__languages">
+              <span class="header__language"
+                    [ngClass]="{'header__language--active' : translate.currentLang === 'ru'}"
+                    (click)="switchLanguage('ru')">
+                RU
+              </span>
+              <span class="header__language "
+                    [ngClass]="{'header__language--active' : translate.currentLang === undefined || translate.currentLang === 'en'}"
+                    (click)="switchLanguage('en')">
+                EN
+              </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="main">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-2">
+                <nav [ngClass]="{'nav--active' : appComponentModel.burger}" class="nav">
+                    <a class="nav__block"
+                       (click)="appComponentModel.burger = false"
+                       routerLink="/"
+                       [routerLinkActiveOptions]="{ exact: true }"
+                       routerLinkActive="nav__block--active">
+                        <span class="nav__capital">
+                          <i class="fa fa-user" aria-hidden="true"></i>
+                        </span>
+                        <span class="nav__title">{{ 'GENERAL.about_me' | translate }}</span>
+                    </a>
+                    <a class="nav__block"
+                       (click)="appComponentModel.burger = false"
+                       routerLink="/portfolio"
+                       routerLinkActive="nav__block--active">
+                          <span class="nav__capital">
+                            <i class="fa fa-cube" aria-hidden="true"></i>
+                          </span>
+                      <span class="nav__title">{{ 'GENERAL.portfolio' | translate }}</span>
+                    </a>
+                    <a class="nav__block"
+                       routerLink="/news"
+                       (click)="appComponentModel.burger = false"
+                       routerLinkActive="nav__block--active">
+                        <span class="nav__capital">
+                          <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                        </span>
+                        <span class="nav__title">{{ 'GENERAL.news' | translate }}</span>
+                    </a>
+                    <a class="nav__block"
+                       target="_blank"
+                       href="https://ths-app-886.firebaseapp.com/">
+                          <span class="nav__capital">
+                            <i class="fa fa-leaf" aria-hidden="true"></i>
+                          </span>
+                      <span class="nav__title">{{ 'GENERAL.training' | translate }}</span>
+                    </a>
+                </nav>
+
+            </div>
+            <div class="col-md-10">
+                <div class="main__spinnerWrap"
+                     [ngClass]="{'main__spinnerWrap--active' : appComponentModel.spinnerShow}">
+                    <div class="main__spinner">
+                        <div class="main__cube"></div>
+                        <div class="main__cube main__cube--second"></div>
+                    </div>
+                </div>
+                <div (scroll)="scrollHandler($event)"
+                     class="main__content custom-scroll">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<div class="footer">
+    <div class="container">
+        <div class="footer__blockWrap">
+            <div [ngClass]="{'footer__block--active' : appComponentModel.show}"
+                    class="footer__block">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="footer__label">
+                            {{ 'FORM.phone' | translate }}
+                            <a class="footer__info" href="tel:+380962258179">+380 96 225 81 79</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 footer__arrowBlockWrap">
+                        <div ng-model="appComponentModel.show"
+                             (click)="appComponentModel.show ? appComponentModel.show = false : appComponentModel.show = true"
+                             class="footer__arrowBlock">
+                            <span [hidden]="appComponentModel.show" class="footer__message">{{ 'FORM.show_form' | translate }}</span>
+                            <span [hidden]="!appComponentModel.show" class="footer__message">{{ 'FORM.hide_form' | translate }}</span>
+                            <i class="fa fa-angle-up"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="footer__label">
+                            {{ 'FORM.email' | translate }}
+                            <a class="footer__info" href="mailto:limanskiy1989@gmail.com">limanskiy1989@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="footer__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                            <textarea formControlName="text"
+                                      class="footer__textArea"
+                                      placeholder="{{ 'FORM.your_message' | translate }}"></textarea>
+                        </div>
+                        <div class="col-md-6 offset-md-3">
+                            <input formControlName="email"
+                                   class="footer__input"
+                                   [email]="true"
+                                   placeholder="{{ 'FORM.your_email' | translate }}"
+                                   type="email">
+                        </div>
+                        <div class="col-md-6 offset-md-3 footer__subWrap">
+                            <button *ngIf="form.valid"
+                                    class="footer__submit"
+                                    type="submit">
+                                <i [ngClass]="{'fa--away' : appComponentModel.emailSend}"
+                                   class="fa fa-telegram"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
